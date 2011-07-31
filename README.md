@@ -55,7 +55,7 @@ Insert in your code:
 
 *Tip: oTarget Could be the same oApplyTo element if we want to replace the full content with the cut content*
 
-*Tip: If you only need to change the style you can*
+*Tip: If you only need to change the style you must put "undefined" where oTexts must be placed.*
 
 ## Documentation
 
