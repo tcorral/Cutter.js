@@ -9,6 +9,7 @@ Cutter cuts the content to the number of requested words and if needed puts a li
 ### Some benefits:
 
 *   No markup is lost.
+*   Framework agnostic.
 *   The content can be written without take care about the full content.
 *   Not needed to have two different contents.
 *   Crossbrowsing
