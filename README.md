@@ -13,11 +13,11 @@ Cutter cuts the content to the number of requested words and if needed puts a li
 * Not needed to have two different contents.
 * Crossbrowsing
  * Tested on:
-  * IE > 6
-  * Firefox > 3
-  * Safari > 4
-  * Google Chrome
-  * Opera > 9
+   * IE > 6
+   * Firefox > 3
+   * Safari > 4
+   * Google Chrome
+   * Opera > 9
 * Only 1.4kb when Gzipped.
 
 
@@ -30,11 +30,11 @@ Cutter cuts the content to the number of requested words and if needed puts a li
 ### Before using it:
 Insert in your code:
 
-	<script type="text/javascript" src="/path/to/your/js/libs/Cutter.js"></script>
+	<script type="text/javascript" src="/path/to/your/js/libs/**Cutter.js**"></script>
 
 ### Simple execution:
 
-	Cutter.run(oApplyTo, oTarget, nWords, [oTexts, oClasses]);
+	Cutter.run(**oApplyTo**, **oTarget**, **nWords**, *[oTexts, oClasses]*);
 
 ####Mandatory
 
@@ -48,11 +48,11 @@ Insert in your code:
 
 >  **oTexts**: The texts config object with the text that will be showed if the link, to open the full content,is needed
 
->    oTexts by default: { more: "View more"}.
+>>    oTexts by default: { more: "View more"}.
 
 >  **oClasses**: The style config object with the class to style the link if needed.
 
->    oClasses by default: { more: "more"}.
+>>    oClasses by default: { more: "more"}.
 
 *Tip: oTarget Could be the same oApplyTo element if we want to replace the full content with the cut content*
 
