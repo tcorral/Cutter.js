@@ -30,11 +30,11 @@ Cutter cuts the content to the number of requested words and if needed puts a li
 ### Before using it:
 Insert in your code:
 
-	<script type="text/javascript" src="/path/to/your/js/libs/**Cutter.js**"></script>
+	<script type="text/javascript" src="/path/to/your/js/libs/Cutter.js"></script>
 
 ### Simple execution:
 
-	Cutter.run(**oApplyTo**, **oTarget**, **nWords**, *[oTexts, oClasses]*);
+	Cutter.run(oApplyTo, oTarget, nWords, [oTexts, oClasses]);
 
 ####Mandatory
 
