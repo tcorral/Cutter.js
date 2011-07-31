@@ -22,11 +22,11 @@ TestCase("CutterConstuctorTest", sinon.testCase({
 	},
 	"test should return CutterClasses instance for oClasses by default": function()
 	{
-		assertInstanceOf(CutterClasses, this.oCutter.oClasses);
+		assertObject(this.oCutter.oClasses);
 	},
 	"test should return CutterTexts instance for oTexts by default": function()
 	{
-		assertInstanceOf(CutterTexts, this.oCutter.oTexts);
+		assertObject(this.oCutter.oTexts);
 	},
 	"test should return 0 for nWords by default": function()
 	{
@@ -407,7 +407,7 @@ TestCase("CutterTrimTest", sinon.testCase({
 		var sExpected = "pepe";
 		var sResult = '';
 
-		sResult = this.oCutter._trim(sString);
+		sResult = this.oCutter.trim(sString);
 
 		assertSame(sExpected, sResult);
 	},
@@ -417,7 +417,7 @@ TestCase("CutterTrimTest", sinon.testCase({
 		var sExpected = "pepe";
 		var sResult = '';
 
-		sResult = this.oCutter._trim(sString);
+		sResult = this.oCutter.trim(sString);
 
 		assertSame(sExpected, sResult);
 	},
@@ -427,7 +427,7 @@ TestCase("CutterTrimTest", sinon.testCase({
 		var sExpected = "pepe";
 		var sResult = '';
 
-		sResult = this.oCutter._trim(sString);
+		sResult = this.oCutter.trim(sString);
 
 		assertSame(sExpected, sResult);
 	},
@@ -438,15 +438,15 @@ TestCase("CutterCountWordsTest", sinon.testCase({
 	setUp: function()
 	{
 		cutterSetUp.call(this);
-		sinon.spy(this.oCutter, "_trim");
+		sinon.spy(this.oCutter, "trim");
 	},
-	"test should call the _trim method one time": function()
+	"test should call the trim method one time": function()
 	{
 		var sString = " En un lugar de la mancha de cuyo nombre no quiero acordarme ";
 
-		this.oCutter._countWords(sString);
+		this.oCutter.countWords(sString);
 
-		assertTrue(this.oCutter._trim.calledOnce);
+		assertTrue(this.oCutter.trim.calledOnce);
 	},
 	"test should return 12 for the number of words": function()
 	{
@@ -454,13 +454,13 @@ TestCase("CutterCountWordsTest", sinon.testCase({
 		var nExpected = 12;
 		var nResult = 0;
 
-		nResult = this.oCutter._countWords(sString);
+		nResult = this.oCutter.countWords(sString);
 
 		assertEquals(nExpected, nResult);
 	},
 	tearDown: function()
 	{
-		this.oCutter._trim.restore();
+		this.oCutter.trim.restore();
 		cutterTearDown.call(this);
 	}
 }));
@@ -469,26 +469,26 @@ TestCase("CutterGetOnlyNumberOfWordsTest", sinon.testCase({
 	setUp: function()
 	{
 		cutterSetUp.call(this);
-		sinon.spy(this.oCutter, "_trim");
+		sinon.spy(this.oCutter, "trim");
 		sinon.spy(Array.prototype, "join");
 		sinon.spy(Array.prototype, "splice");
 		sinon.spy(String.prototype, "split");
 	},
-	"test should call the _trim method method one time": function()
+	"test should call the trim method method one time": function()
 	{
 		var sString = " En un lugar de la mancha de cuyo nombre no quiero acordarme ";
 		var nWords = 8;
 
-		this.oCutter._getOnlyNumberOfWords(sString, nWords);
+		this.oCutter.getOnlyNumberOfWords(sString, nWords);
 
-		assertTrue(this.oCutter._trim.calledOnce);
+		assertTrue(this.oCutter.trim.calledOnce);
 	},
 	"test should call the split String method one time": function()
 	{
 		var sString = " En un lugar de la mancha de cuyo nombre no quiero acordarme ";
 		var nWords = 8;
 
-		this.oCutter._getOnlyNumberOfWords(sString, nWords);
+		this.oCutter.getOnlyNumberOfWords(sString, nWords);
 
 		assertTrue(String.prototype.split.calledOnce);
 	},
@@ -497,7 +497,7 @@ TestCase("CutterGetOnlyNumberOfWordsTest", sinon.testCase({
 		var sString = " En un lugar de la mancha de cuyo nombre no quiero acordarme ";
 		var nWords = 8;
 
-		this.oCutter._getOnlyNumberOfWords(sString, nWords);
+		this.oCutter.getOnlyNumberOfWords(sString, nWords);
 
 		assertTrue(Array.prototype.join.calledOnce);
 	},
@@ -506,7 +506,7 @@ TestCase("CutterGetOnlyNumberOfWordsTest", sinon.testCase({
 		var sString = " En un lugar de la mancha de cuyo nombre no quiero acordarme ";
 		var nWords = 8;
 
-		this.oCutter._getOnlyNumberOfWords(sString, nWords);
+		this.oCutter.getOnlyNumberOfWords(sString, nWords);
 
 		assertTrue(Array.prototype.splice.calledOnce);
 	},
@@ -517,7 +517,7 @@ TestCase("CutterGetOnlyNumberOfWordsTest", sinon.testCase({
 		var sExpected = 'En un lugar de la mancha de cuyo';
 		var sResult = '';
 
-		sResult = this.oCutter._getOnlyNumberOfWords(sString, nWords);
+		sResult = this.oCutter.getOnlyNumberOfWords(sString, nWords);
 
 		assertEquals(sExpected, sResult);
 	},
@@ -526,7 +526,7 @@ TestCase("CutterGetOnlyNumberOfWordsTest", sinon.testCase({
 		Array.prototype.splice.restore();
 		Array.prototype.join.restore();
 		String.prototype.split.restore();
-		this.oCutter._trim.restore();
+		this.oCutter.trim.restore();
 		cutterTearDown.call(this);
 	}
 }));
@@ -565,7 +565,7 @@ TestCase("CutterGetFirstElementOfObjectTest", sinon.testCase({
 		};
 		var oResult = null;
 
-		oResult = this.oCutter._getFirstElementOfObject(oObject);
+		oResult = this.oCutter.getFirstElementOfObject(oObject);
 
 		assertEquals(oObject.o, oResult);
 	},
@@ -580,6 +580,7 @@ TestCase("CutterSerializeDomObjectTest", sinon.testCase({
 	{
 		cutterSetUp.call(this);
 		this.oCutter.bTest = true;
+		this.oCutter.nIdTest = 0;
 		this.oCutter.nWords = 100;
 		/*:DOC += <div id='test'>
 		 			<p>
@@ -600,7 +601,7 @@ TestCase("CutterSerializeDomObjectTest", sinon.testCase({
 	{
 		var oExpected =
 		{
-			"__0__":
+			"__1__":
 			{
 
 				"nodeType":1,
@@ -611,64 +612,64 @@ TestCase("CutterSerializeDomObjectTest", sinon.testCase({
 				},
 				"childNodes":
 				{
-					"__1__":
+					"__2__":
 					{
 						"nodeType":3,
 						"textContent":"\u000a\u0009\u0009 \u0009\u0009\u0009"
 					},
-					"__2__":
+					"__3__":
 					{
 						"nodeType":1,
 						"tagName":"p",
 						"attributes":{},
 						"childNodes":
 						{
-							"__3__":
+							"__4__":
 							{
 								"nodeType":3,
 								"textContent":"\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Lorem ipsum dolor sit amet, consectetur adipiscing elit.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Pellentesque fermentum malesuada "
 							},
-							"__4__":
+							"__5__":
 							{
 								"nodeType":1,
 								"tagName":"strong",
 								"attributes":{},
 								"childNodes":
 								{
-									"__5__":
+									"__6__":
 									{
 										"nodeType":3,
 										"textContent":"elit"
 									}
 								}
 							},
-							"__6__":
+							"__7__":
 							{
 								"nodeType":3,
 								"textContent":" eu feugiat.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Cras venenatis justo nec nisl imperdiet placerat.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Mauris "
 							},
-							"__7__":
+							"__8__":
 							{
 								"nodeType":1,
 								"tagName":"em",
 								"attributes":{},
 								"childNodes":
 								{
-									"__8__":
+									"__9__":
 									{
 										"nodeType":3,
 										"textContent":"convallis"
 									}
 								}
 							},
-							"__9__":
+							"__10__":
 							{
 								"nodeType":3,
 								"textContent":" orci non lectus accumsan lacinia.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Praesent semper porta erat vel gravida. Maecenas varius,\u000a\u0009\u0009 \u0009\u0009\u0009\u0009quam nec convallis pulvinar, turpis nunc tincidunt enim,\u000a\u0009\u0009 \u0009\u0009\u0009\u0009eu dapibus leo erat et lorem. Pellentesque id tortor volutpat tortor tempor tempus.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Praesent vehicula velit vitae tellus porttitor sit amet pellentesque lorem auctor.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Morbi malesuada turpis vel mi vestibulum et sollicitudin mi suscipit.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Nam pretium tempor elit, eu volutpat felis molestie ut. Donec id vulputate massa.\u000a\u0009\u0009 \u0009\u0009\u0009"
 							}
 						}
 					},
-					"__10__":
+					"__11__":
 					{
 						"nodeType":3,
 						"textContent":"\u000a\u0009\u0009\u0009\u0009  "
@@ -683,6 +684,8 @@ TestCase("CutterSerializeDomObjectTest", sinon.testCase({
 	tearDown: function()
 	{
 		this.oCutter.oSerialized = null;
+		this.oCutter.bTest = false;
+		this.oCutter.nIdTest = 0;
 		cutterTearDown.call(this);
 	}
 }));
@@ -693,9 +696,10 @@ TestCase("CutterDeserializeSerializedObjectTest", sinon.testCase({
 		cutterSetUp.call(this);
 		this.oCutter.bTest = true;
 		this.oCutter.nWords = 100;
+		this.oCutter.nIdTest = 0;
 		this.oCutter.oSerialized =
 		{
-			"__0__":
+			"__1__":
 			{
 
 				"nodeType":1,
@@ -706,64 +710,64 @@ TestCase("CutterDeserializeSerializedObjectTest", sinon.testCase({
 				},
 				"childNodes":
 				{
-					"__1__":
+					"__2__":
 					{
 						"nodeType":3,
 						"textContent":"\u000a\u0009\u0009 \u0009\u0009\u0009"
 					},
-					"__2__":
+					"__3__":
 					{
 						"nodeType":1,
 						"tagName":"p",
 						"attributes":{},
 						"childNodes":
 						{
-							"__3__":
+							"__4__":
 							{
 								"nodeType":3,
 								"textContent":"\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Lorem ipsum dolor sit amet, consectetur adipiscing elit.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Pellentesque fermentum malesuada "
 							},
-							"__4__":
+							"__5__":
 							{
 								"nodeType":1,
 								"tagName":"strong",
 								"attributes":{},
 								"childNodes":
 								{
-									"__5__":
+									"__6__":
 									{
 										"nodeType":3,
 										"textContent":"elit"
 									}
 								}
 							},
-							"__6__":
+							"__7__":
 							{
 								"nodeType":3,
 								"textContent":" eu feugiat.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Cras venenatis justo nec nisl imperdiet placerat.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Mauris "
 							},
-							"__7__":
+							"__8__":
 							{
 								"nodeType":1,
 								"tagName":"em",
 								"attributes":{},
 								"childNodes":
 								{
-									"__8__":
+									"__9__":
 									{
 										"nodeType":3,
 										"textContent":"convallis"
 									}
 								}
 							},
-							"__9__":
+							"__10__":
 							{
 								"nodeType":3,
 								"textContent":" orci non lectus accumsan lacinia.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Praesent semper porta erat vel gravida. Maecenas varius,\u000a\u0009\u0009 \u0009\u0009\u0009\u0009quam nec convallis pulvinar, turpis nunc tincidunt enim,\u000a\u0009\u0009 \u0009\u0009\u0009\u0009eu dapibus leo erat et lorem. Pellentesque id tortor volutpat tortor tempor tempus.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Praesent vehicula velit vitae tellus porttitor sit amet pellentesque lorem auctor.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Morbi malesuada turpis vel mi vestibulum et sollicitudin mi suscipit.\u000a\u0009\u0009 \u0009\u0009\u0009\u0009Nam pretium tempor elit, eu volutpat felis molestie ut. Donec id vulputate massa.\u000a\u0009\u0009 \u0009\u0009\u0009"
 							}
 						}
 					},
-					"__10__":
+					"__11__":
 					{
 						"nodeType":3,
 						"textContent":"\u000a\u0009\u0009\u0009\u0009  "
@@ -783,6 +787,8 @@ TestCase("CutterDeserializeSerializedObjectTest", sinon.testCase({
 	},
 	tearDown: function()
 	{
+		this.oCutter.bTest = false;
+		this.oCutter.nIdTest = 0;
 		this.oCutter.oSerialized = null;
 		cutterTearDown.call(this);
 	}
@@ -897,14 +903,6 @@ TestCase("CutterInitTest", sinon.testCase({
 		assertTrue(this.oCutter.createViewMore.calledOnce);
 		assertTrue(this.oCutter.deserializeSerializedObject.calledOnce);
 	},
-	"test should call the removeChild one time and appendChild two times methods on DOM elements if bNeedViewMore is false": function()
-	{
-		this.oCutter.init();
-
-		assertTrue(this.fpRemoveChild.calledOnce);
-		assertTrue(this.fpAppendChild.calledOnce);
-		assertTrue(this.fpAppendChild3.calledOnce);
-	},
 	"test should call the setBehaviour  if bNeedViewMore is true and bNotViewMore is false": function()
 	{
 		this.oCutter.bNeedViewMore = true;
@@ -913,15 +911,6 @@ TestCase("CutterInitTest", sinon.testCase({
 		this.oCutter.init();
 
 		assertTrue(this.oCutter.setBehaviour.calledOnce);
-	},
-	"test should call the fpAppendChild2  if bNeedViewMore is true and bNotViewMore is false": function()
-	{
-		this.oCutter.bNeedViewMore = true;
-		this.oCutter.bNotViewMore = false;
-
-		this.oCutter.init();
-
-		assertTrue(this.fpAppendChild2.calledOnce);
 	},
 	tearDown: function()
 	{
