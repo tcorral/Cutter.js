@@ -8,18 +8,17 @@ Cutter cuts the content to the number of requested words and if needed puts a li
 
 ### Some benefits:
 
-* No markup is lost.
-* The content can be written without take care about the full content.
-* Not needed to have two different contents.
-* Crossbrowsing
- * Tested on:
-   * IE > 6
-   * Firefox > 3
-   * Safari > 4
-   * Google Chrome
-   * Opera > 9
-* Only 1.4kb when Gzipped.
-
+*   No markup is lost.
+*   The content can be written without take care about the full content.
+*   Not needed to have two different contents.
+*   Crossbrowsing
+    * Tested on:
+        * IE >= 6
+        * Firefox >= 3
+        * Safari >= 4
+        * Google Chrome >= 4
+        * Opera >= 9.5
+*   Only 1.4kb when Gzipped.
 
 [API documentation](https://github.com/tcorral/Cutter.js/examples_and_documents/jsdoc/index.html)
 
@@ -38,21 +37,21 @@ Insert in your code:
 
 ####Mandatory
 
->  **oAplyTo**: The element where the cutter will cut the content
+  >  **oAplyTo**: The element where the cutter will cut the content
 
->  **oTarget**: The element where the content will be attached after cut it.
+  >  **oTarget**: The element where the content will be attached after cut it.
 
->  **nWords**: Number of words to cut the content.
+  >  **nWords**: Number of words to cut the content.
 
 ####Optional
 
->  **oTexts**: The texts config object with the text that will be showed if the link, to open the full content,is needed
+  >  **oTexts**: The texts config object with the text that will be showed if the link, to open the full content,is needed
 
->>    oTexts by default: { more: "View more"}.
+  >>    oTexts by default: { more: "View more"}.
 
->  **oClasses**: The style config object with the class to style the link if needed.
+  >  **oClasses**: The style config object with the class to style the link if needed.
 
->>    oClasses by default: { more: "more"}.
+  >>    oClasses by default: { more: "more"}.
 
 *Tip: oTarget Could be the same oApplyTo element if we want to replace the full content with the cut content*
 
