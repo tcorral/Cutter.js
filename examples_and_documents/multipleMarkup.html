@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Cutter - Multiple Markup -</title>
+		<script type="text/javascript" src="js/Cutter.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function ()
+			{
+				$("#runCutter").click(function ()
+				{
+					var self = this;
+					var oElement = document.getElementById("test");
+					Cutter.run(oElement, oElement, 100);
+					$(this).hide();
+					$(".more").click(function()
+					{
+						$(self).show();
+					})
+					return false;
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>Cutter.js - Multiple Markup -</h1>
+		<ul>
+			<li>
+				Number of words: 100
+			</li>
+		</ul>
+		<div id="test">
+			Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipiscing <em>elit</em>. Vivamus pharetra mattis erat, in rhoncus augue laoreet eu. <p>Suspendisse potenti.</p> Duis risus neque, dictum ut hendrerit et, lacinia sit amet nunc. Ut vitae velit lacus, in hendrerit lacus. Proin accumsan massa sit amet neque egestas sed lobortis dolor rhoncus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus accumsan quam a ante fringilla viverra. Integer rhoncus nisi ac sem consequat rutrum. Sed bibendum felis non justo commodo pharetra. Curabitur egestas ante vitae felis sodales fringilla. Ut non dui vitae orci eleifend suscipit. Aenean tincidunt, eros non rutrum aliquam, felis ante vestibulum nibh, eu aliquet libero tortor eu massa. In eget ultricies metus. Donec nulla nisl, tempor sed consectetur non, mattis eu urna. Etiam non lacus ut quam tristique placerat non eu lorem. Fusce sed enim in ante tincidunt tempor ac quis nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent ullamcorper urna faucibus velit molestie euismod. Nullam neque nulla, euismod id fermentum sit amet, aliquet vitae odio.
+		</div>
+		<p>
+			<a href='#' id='runCutter'>Run Cutter</a>
+		</p>
+	</body>
+</html>

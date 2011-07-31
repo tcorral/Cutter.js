@@ -1,0 +1,685 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <link rel=stylesheet href="../../code.css" type="text/css"></head><body><pre><span class='linenumber'>   1</span> <span class="COMM">/**
+<span class='linenumber'>   2</span>  * CutterClasses is the config singleton for classes used in Cutter
+<span class='linenumber'>   3</span>  * @class CutterClasses
+<span class='linenumber'>   4</span>  * @constructor
+<span class='linenumber'>   5</span>  * @author Tomas Corral Casas
+<span class='linenumber'>   6</span>  * @version 1.0
+<span class='linenumber'>   7</span>  * @type Object
+<span class='linenumber'>   8</span>  */</span><span class="WHIT">
+<span class='linenumber'>   9</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">CutterClasses</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'>  10</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'>  11</span> </span><span class="WHIT">    </span><span class="NAME">this.more</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"more"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  12</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  13</span> </span><span class="COMM">/**
+<span class='linenumber'>  14</span>  * CutterTexts is the config singleton for texts used in Cutter
+<span class='linenumber'>  15</span>  * @class CutterTexts
+<span class='linenumber'>  16</span>  * @constructor
+<span class='linenumber'>  17</span>  * @author Tomas Corral Casas
+<span class='linenumber'>  18</span>  * @version 1.0
+<span class='linenumber'>  19</span>  * @type Object
+<span class='linenumber'>  20</span>  */</span><span class="WHIT">
+<span class='linenumber'>  21</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">CutterTexts</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'>  22</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'>  23</span> </span><span class="WHIT">    </span><span class="NAME">this.more</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">  </span><span class="STRN">"View more"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  24</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  25</span> </span><span class="COMM">/**
+<span class='linenumber'>  26</span>  * Cutter is a class that allows HTML code to cut a number of words contained in the nodes, keeping intact the HTML markup.
+<span class='linenumber'>  27</span>  * @author Tomas Corral Casas
+<span class='linenumber'>  28</span>  * @version 1.0
+<span class='linenumber'>  29</span>  * @class Cutter
+<span class='linenumber'>  30</span>  * @constructor
+<span class='linenumber'>  31</span>  * @type Object
+<span class='linenumber'>  32</span>  */</span><span class="WHIT">
+<span class='linenumber'>  33</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">Cutter</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'>  34</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'>  35</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'>  36</span>      * oApplyTo is the Dom object where we want to use the cutter.
+<span class='linenumber'>  37</span>      * @member Cutter.prototype
+<span class='linenumber'>  38</span>      * @author Tomas Corral Casas
+<span class='linenumber'>  39</span> 	 * @version 1.0
+<span class='linenumber'>  40</span>      * @type Object
+<span class='linenumber'>  41</span>      */</span><span class="WHIT">
+<span class='linenumber'>  42</span> </span><span class="WHIT">    </span><span class="NAME">this.oApplyTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  43</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'>  44</span>      * oBackupApplyTo is the clone from Dom object to get it when showing the content.
+<span class='linenumber'>  45</span>      * @member Cutter.prototype
+<span class='linenumber'>  46</span>      * @author Tomas Corral Casas
+<span class='linenumber'>  47</span> 	 * @version 1.0
+<span class='linenumber'>  48</span>      * @type Object
+<span class='linenumber'>  49</span>      */</span><span class="WHIT">
+<span class='linenumber'>  50</span> </span><span class="WHIT">    </span><span class="NAME">this.oBackupApplyTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  51</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'>  52</span>      * oTarget is the Dom object where to put the cutted code
+<span class='linenumber'>  53</span>      * @member Cutter.prototype
+<span class='linenumber'>  54</span>      * @author Tomas Corral Casas
+<span class='linenumber'>  55</span> 	 * @version 1.0
+<span class='linenumber'>  56</span>      * @type Object
+<span class='linenumber'>  57</span>      */</span><span class="WHIT">
+<span class='linenumber'>  58</span> </span><span class="WHIT">    </span><span class="NAME">this.oTarget</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  59</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'>  60</span>      * oClasses is the config singleton for classes used in Cutter
+<span class='linenumber'>  61</span>      * @member Cutter.prototype
+<span class='linenumber'>  62</span>      * @author Tomas Corral Casas
+<span class='linenumber'>  63</span> 	 * @version 1.0
+<span class='linenumber'>  64</span>      * @type Object
+<span class='linenumber'>  65</span>      */</span><span class="WHIT">
+<span class='linenumber'>  66</span> </span><span class="WHIT">    </span><span class="NAME">this.oClasses</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">CutterClasses</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  67</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'>  68</span>      * oTexts is the config singleton for texts used in Cutter
+<span class='linenumber'>  69</span>      * @member Cutter.prototype
+<span class='linenumber'>  70</span>      * @author Tomas Corral Casas
+<span class='linenumber'>  71</span> 	 * @version 1.0
+<span class='linenumber'>  72</span>      * @type Object
+<span class='linenumber'>  73</span>      */</span><span class="WHIT">
+<span class='linenumber'>  74</span> </span><span class="WHIT">    </span><span class="NAME">this.oTexts</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">CutterTexts</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  75</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'>  76</span>      * nWords is the number of words to Cut
+<span class='linenumber'>  77</span>      * @member Cutter.prototype
+<span class='linenumber'>  78</span>      * @author Tomas Corral Casas
+<span class='linenumber'>  79</span> 	 * @version 1.0
+<span class='linenumber'>  80</span>      * @type Number
+<span class='linenumber'>  81</span>      */</span><span class="WHIT">
+<span class='linenumber'>  82</span> </span><span class="WHIT">    </span><span class="NAME">this.nWords</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  83</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'>  84</span>      * nWordsCounter is the counter of words when finding them in code
+<span class='linenumber'>  85</span>      * @member Cutter.prototype
+<span class='linenumber'>  86</span>      * @author Tomas Corral Casas
+<span class='linenumber'>  87</span> 	 * @version 1.0
+<span class='linenumber'>  88</span>      * @type Number
+<span class='linenumber'>  89</span>      */</span><span class="WHIT">
+<span class='linenumber'>  90</span> </span><span class="WHIT">    </span><span class="NAME">this.nWordsCounter</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  91</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'>  92</span>      * oViewMore is a reference to the "see more" link.
+<span class='linenumber'>  93</span>      * @member Cutter.prototype
+<span class='linenumber'>  94</span>      * @author Tomas Corral Casas
+<span class='linenumber'>  95</span> 	 * @version 1.0
+<span class='linenumber'>  96</span>      * @type Object
+<span class='linenumber'>  97</span>      */</span><span class="WHIT">
+<span class='linenumber'>  98</span> </span><span class="WHIT">    </span><span class="NAME">this.oViewMore</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'>  99</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'> 100</span>      * oSerialized is the JSON object where Cutter serializes all the DOM objects inside the oApplyTo Dom element
+<span class='linenumber'> 101</span>      * @member Cutter.prototype
+<span class='linenumber'> 102</span>      * @author Tomas Corral Casas
+<span class='linenumber'> 103</span> 	 * @version 1.0
+<span class='linenumber'> 104</span>      * @type Object
+<span class='linenumber'> 105</span>      */</span><span class="WHIT">
+<span class='linenumber'> 106</span> </span><span class="WHIT">    </span><span class="NAME">this.oSerialized</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 107</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'> 108</span>      * oDocumentFragment is the DocumentFragment where the Dom elements are inserted before insert on Target
+<span class='linenumber'> 109</span>      * @member Cutter.prototype
+<span class='linenumber'> 110</span>      * @author Tomas Corral Casas
+<span class='linenumber'> 111</span> 	 * @version 1.0
+<span class='linenumber'> 112</span>      * @type Object
+<span class='linenumber'> 113</span>      */</span><span class="WHIT">
+<span class='linenumber'> 114</span> </span><span class="WHIT">    </span><span class="NAME">this.oDocumentFragment</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createDocumentFragment</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 115</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='linenumber'> 116</span> 	 * bTest is a property to now if you want to test the Cutter class
+<span class='linenumber'> 117</span> 	 * This is used to change the type of id for each element.
+<span class='linenumber'> 118</span>      * false by default.
+<span class='linenumber'> 119</span>      * @member Cutter.prototype
+<span class='linenumber'> 120</span>      * @author Tomas Corral Casas
+<span class='linenumber'> 121</span> 	 * @version 1.0
+<span class='linenumber'> 122</span>      * @type Boolean
+<span class='linenumber'> 123</span> 	 */</span><span class="WHIT">
+<span class='linenumber'> 124</span> </span><span class="WHIT">    </span><span class="NAME">this.bTest</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 125</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='linenumber'> 126</span>      * nIdTest is the property for testing that will save the order for id.
+<span class='linenumber'> 127</span>      * 0 by default.
+<span class='linenumber'> 128</span>      * @member Cutter.prototype
+<span class='linenumber'> 129</span>      * @author Tomas Corral Casas
+<span class='linenumber'> 130</span> 	 * @version 1.0
+<span class='linenumber'> 131</span>      * @type Number
+<span class='linenumber'> 132</span>      */</span><span class="WHIT">
+<span class='linenumber'> 133</span> </span><span class="WHIT">    </span><span class="NAME">this.nIdTest</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 134</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='linenumber'> 135</span> 	 * bNeedViewMore is a property that will check it it's necessary to add the link to view more or not
+<span class='linenumber'> 136</span> 	 * It checks if its necessary if for some reason the content is cutted.
+<span class='linenumber'> 137</span> 	 * false by default.
+<span class='linenumber'> 138</span>      * @member Cutter.prototype
+<span class='linenumber'> 139</span>      * @author Tomas Corral Casas
+<span class='linenumber'> 140</span> 	 * @version 1.0
+<span class='linenumber'> 141</span>      * @type Boolean
+<span class='linenumber'> 142</span> 	 */</span><span class="WHIT">
+<span class='linenumber'> 143</span> </span><span class="WHIT">	</span><span class="NAME">this.bNeedViewMore</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 144</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='linenumber'> 145</span> 	 * bNotViewMore is a property that could be setted by the user to add or not the link to view more content if needed.
+<span class='linenumber'> 146</span> 	 * false by default.
+<span class='linenumber'> 147</span>      * @member Cutter.prototype
+<span class='linenumber'> 148</span>      * @author Tomas Corral Casas
+<span class='linenumber'> 149</span> 	 * @version 1.0
+<span class='linenumber'> 150</span>      * @type Boolean
+<span class='linenumber'> 151</span> 	 */</span><span class="WHIT">
+<span class='linenumber'> 152</span> </span><span class="WHIT">	</span><span class="NAME">this.bNotViewMore</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 153</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 154</span> </span><span class="COMM">/**
+<span class='linenumber'> 155</span>  * applyTo is the method that sets the Dom object where to apply the cutter
+<span class='linenumber'> 156</span>  * @member Cutter.prototype
+<span class='linenumber'> 157</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 158</span>  * @version 1.0
+<span class='linenumber'> 159</span>  * @param  {object} oApplyTo This is the Dom element
+<span class='linenumber'> 160</span>  * @return the instance of the Cutter
+<span class='linenumber'> 161</span>  * @type Object
+<span class='linenumber'> 162</span>  */</span><span class="WHIT">
+<span class='linenumber'> 163</span> </span><span class="NAME">Cutter.prototype.applyTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oApplyTo</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 164</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 165</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">oApplyTo</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 166</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 167</span> </span><span class="WHIT">    	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 168</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 169</span> </span><span class="WHIT">    </span><span class="NAME">this.oApplyTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oApplyTo</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 170</span> </span><span class="WHIT">    </span><span class="NAME">this.oBackupApplyTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oApplyTo.cloneNode</span><span class="PUNC">(</span><span class="KEYW">true</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 171</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 172</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 173</span> </span><span class="COMM">/**
+<span class='linenumber'> 174</span>  * setTarget is the method that sets the Dom object where to put the cutted code
+<span class='linenumber'> 175</span>  * @member Cutter.prototype
+<span class='linenumber'> 176</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 177</span>  * @version 1.0
+<span class='linenumber'> 178</span>  * @param  {object} oTarget This is the Dom element
+<span class='linenumber'> 179</span>  * @return the instance of the Cutter
+<span class='linenumber'> 180</span>  * @type Object
+<span class='linenumber'> 181</span>  */</span><span class="WHIT">
+<span class='linenumber'> 182</span> </span><span class="NAME">Cutter.prototype.setTarget</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oTarget</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 183</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 184</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">oTarget</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 185</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 186</span> </span><span class="WHIT">    	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 187</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 188</span> </span><span class="WHIT">    </span><span class="NAME">this.oTarget</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oTarget</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 189</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 190</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 191</span> </span><span class="COMM">/**
+<span class='linenumber'> 192</span>  * setClasses is the method that sets the config singleton of Classes used in Cutter
+<span class='linenumber'> 193</span>  * @member Cutter.prototype
+<span class='linenumber'> 194</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 195</span>  * @version 1.0
+<span class='linenumber'> 196</span>  * @param  {object} oClasses This is the singleton config
+<span class='linenumber'> 197</span>  * @return the instance of the Cutter
+<span class='linenumber'> 198</span>  * @type Object
+<span class='linenumber'> 199</span>  */</span><span class="WHIT">
+<span class='linenumber'> 200</span> </span><span class="NAME">Cutter.prototype.setClasses</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oClasses</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 201</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 202</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">oClasses</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 203</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 204</span> </span><span class="WHIT">    	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 205</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 206</span> </span><span class="WHIT">    </span><span class="NAME">this.oClasses</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oClasses</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 207</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 208</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 209</span> </span><span class="COMM">/**
+<span class='linenumber'> 210</span>  * setTexts is the method that sets the config singleton of Texts used in Cutter
+<span class='linenumber'> 211</span>  * @member Cutter.prototype
+<span class='linenumber'> 212</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 213</span>  * @version 1.0
+<span class='linenumber'> 214</span>  * @param  {object} oTexts This is the singleton config
+<span class='linenumber'> 215</span>  * @return the instance of the Cutter
+<span class='linenumber'> 216</span>  * @type Object
+<span class='linenumber'> 217</span>  */</span><span class="WHIT">
+<span class='linenumber'> 218</span> </span><span class="NAME">Cutter.prototype.setTexts</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oTexts</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 219</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 220</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">oTexts</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 221</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 222</span> </span><span class="WHIT">    	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 223</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 224</span> </span><span class="WHIT">    </span><span class="NAME">this.oTexts</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oTexts</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 225</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 226</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 227</span> </span><span class="COMM">/**
+<span class='linenumber'> 228</span>  * setWords is the method used to set the max number of words before cut the code.
+<span class='linenumber'> 229</span>  * @member Cutter.prototype
+<span class='linenumber'> 230</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 231</span>  * @version 1.0
+<span class='linenumber'> 232</span>  * @param  {number} nWords This is the number of words to see.
+<span class='linenumber'> 233</span>  * @return the instance of the Cutter
+<span class='linenumber'> 234</span>  * @type Object
+<span class='linenumber'> 235</span>  */</span><span class="WHIT">
+<span class='linenumber'> 236</span> </span><span class="NAME">Cutter.prototype.setWords</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">nWords</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 237</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 238</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">nWords</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 239</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 240</span> </span><span class="WHIT">    	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 241</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 242</span> </span><span class="WHIT">    </span><span class="NAME">this.nWords</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">nWords</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 243</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 244</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 245</span> </span><span class="COMM">/**
+<span class='linenumber'> 246</span>  * _trim is an utilities method used to keep out all the spaces before or after the sentence
+<span class='linenumber'> 247</span>  * @member Cutter.prototype
+<span class='linenumber'> 248</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 249</span>  * @version 1.0
+<span class='linenumber'> 250</span>  * @param  {string} sString This is the text to be trimmed
+<span class='linenumber'> 251</span>  * @private
+<span class='linenumber'> 252</span>  * @return the trimmed string
+<span class='linenumber'> 253</span>  * @type String
+<span class='linenumber'> 254</span>  */</span><span class="WHIT">
+<span class='linenumber'> 255</span> </span><span class="NAME">Cutter.prototype._trim</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sString</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 256</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 257</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sString.replace</span><span class="PUNC">(</span><span class="REGX">/^\s+/g</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">replace</span><span class="PUNC">(</span><span class="REGX">/\s+$/g</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 258</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 259</span> </span><span class="COMM">/**
+<span class='linenumber'> 260</span>  * _countWords is an utilities method used to count the words in a String
+<span class='linenumber'> 261</span>  * @member Cutter.prototype
+<span class='linenumber'> 262</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 263</span>  * @version 1.0
+<span class='linenumber'> 264</span>  * @param  {string} sText The text where to know how many words are.
+<span class='linenumber'> 265</span>  * @private
+<span class='linenumber'> 266</span>  * @return the number of words in the string
+<span class='linenumber'> 267</span>  * @type Number
+<span class='linenumber'> 268</span>  */</span><span class="WHIT">
+<span class='linenumber'> 269</span> </span><span class="NAME">Cutter.prototype._countWords</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sText</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 270</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 271</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._trim</span><span class="PUNC">(</span><span class="NAME">sText</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">split</span><span class="PUNC">(</span><span class="STRN">" "</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">length</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 272</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 273</span> </span><span class="COMM">/**
+<span class='linenumber'> 274</span>  * _getOnlyNumberOfWords is an utilities method used to get a number of words from the string
+<span class='linenumber'> 275</span>  * @member Cutter.prototype
+<span class='linenumber'> 276</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 277</span>  * @version 1.0
+<span class='linenumber'> 278</span>  * @param  {string} sString The text from which to extract the words
+<span class='linenumber'> 279</span>  * @param  {number} nWords The number of words to get
+<span class='linenumber'> 280</span>  * @private
+<span class='linenumber'> 281</span>  * @return the number of words in the string
+<span class='linenumber'> 282</span>  * @type Number
+<span class='linenumber'> 283</span>  */</span><span class="WHIT">
+<span class='linenumber'> 284</span> </span><span class="NAME">Cutter.prototype._getOnlyNumberOfWords</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sString</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">nWords</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 285</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 286</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._trim</span><span class="PUNC">(</span><span class="NAME">sString</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">split</span><span class="PUNC">(</span><span class="STRN">" "</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">splice</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">nWords</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">join</span><span class="PUNC">(</span><span class="STRN">" "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 287</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 288</span> </span><span class="COMM">/**
+<span class='linenumber'> 289</span>  * createViewMore is the method that creates the link to see all the content again
+<span class='linenumber'> 290</span>  * @member Cutter.prototype
+<span class='linenumber'> 291</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 292</span>  * @version 1.0
+<span class='linenumber'> 293</span>  * @private
+<span class='linenumber'> 294</span>  */</span><span class="WHIT">
+<span class='linenumber'> 295</span> </span><span class="NAME">Cutter.prototype.createViewMore</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 296</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 297</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oLink</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="STRN">"a"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 298</span> </span><span class="WHIT">	</span><span class="NAME">oLink.className</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.oClasses.more</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 299</span> </span><span class="WHIT">	</span><span class="NAME">oLink.title</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.oTexts.more</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 300</span> </span><span class="WHIT">	</span><span class="NAME">oLink.innerHTML</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.oTexts.more</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 301</span> </span><span class="WHIT">	</span><span class="NAME">this.oViewMore</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oLink</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 302</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 303</span> </span><span class="COMM">/**
+<span class='linenumber'> 304</span>  * _getFirstElementOfObject is an utilities method used to get the first element in a JSON object
+<span class='linenumber'> 305</span>  * @member Cutter.prototype
+<span class='linenumber'> 306</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 307</span>  * @version 1.0
+<span class='linenumber'> 308</span>  * @param  {object} oObject The JSON object from which to obtain the first element
+<span class='linenumber'> 309</span>  * @private
+<span class='linenumber'> 310</span>  * @return the first element in the JSON object
+<span class='linenumber'> 311</span>  * @type Object
+<span class='linenumber'> 312</span>  */</span><span class="WHIT">
+<span class='linenumber'> 313</span> </span><span class="NAME">Cutter.prototype._getFirstElementOfObject</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oObject</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 314</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 315</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oFirstElement</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 316</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">sKey</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">oObject</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 317</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 318</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oObject.hasOwnProperty</span><span class="PUNC">(</span><span class="NAME">sKey</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 319</span> </span><span class="WHIT">        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 320</span> </span><span class="WHIT">            </span><span class="NAME">oFirstElement</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oObject</span><span class="PUNC">[</span><span class="NAME">sKey</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 321</span> </span><span class="WHIT">            </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 322</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 323</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 324</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">oFirstElement</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 325</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 326</span> </span><span class="COMM">/**
+<span class='linenumber'> 327</span>  * deserializeObject is an utilities method used to deserialize a JSON object in a Dom element
+<span class='linenumber'> 328</span>  * @member Cutter.prototype
+<span class='linenumber'> 329</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 330</span>  * @version 1.0
+<span class='linenumber'> 331</span>  * @param  {object} oSerialized The JSON object from which to obtain the Dom element information
+<span class='linenumber'> 332</span>  * @param  {object} oParent The Dom element where to add the new Dom element
+<span class='linenumber'> 333</span>  * @private
+<span class='linenumber'> 334</span>  */</span><span class="WHIT">
+<span class='linenumber'> 335</span> </span><span class="NAME">Cutter.prototype.deserializeObject</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oSerialized</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oParent</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 336</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 337</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oDom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 338</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oSerialized.nodeType</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 339</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 340</span> </span><span class="WHIT">        </span><span class="NAME">oDom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="NAME">oSerialized.tagName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 341</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oSerialized.attributes</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 342</span> </span><span class="WHIT">        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 343</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">jQuery</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 344</span> </span><span class="WHIT">			</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 345</span> </span><span class="WHIT">				</span><span class="NAME">$</span><span class="PUNC">(</span><span class="NAME">oDom</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">attr</span><span class="PUNC">(</span><span class="NAME">oSerialized.attributes</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 346</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 347</span> </span><span class="WHIT">			</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 348</span> </span><span class="WHIT">				</span><span class="KEYW">for</span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">sKey</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">oSerialized.attributes</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 349</span> </span><span class="WHIT">				</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 350</span> </span><span class="WHIT">					</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">oSerialized.attributes.hasOwnProperty</span><span class="PUNC">(</span><span class="NAME">sKey</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 351</span> </span><span class="WHIT">					</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 352</span> </span><span class="WHIT">						</span><span class="NAME">oDom.setAttribute</span><span class="PUNC">(</span><span class="NAME">sKey</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oSerialized.attributes</span><span class="PUNC">[</span><span class="NAME">sKey</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 353</span> </span><span class="WHIT">					</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 354</span> </span><span class="WHIT">				</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 355</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 356</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 357</span> </span><span class="WHIT">        </span><span class="NAME">oParent.appendChild</span><span class="PUNC">(</span><span class="NAME">oDom</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 358</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 359</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 360</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oSerialized.nodeType</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 361</span> </span><span class="WHIT">        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 362</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oSerialized.textContent</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 363</span> </span><span class="WHIT">            </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 364</span> </span><span class="WHIT">                </span><span class="NAME">oDom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createTextNode</span><span class="PUNC">(</span><span class="NAME">oSerialized.textContent</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 365</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 366</span> </span><span class="WHIT">            </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 367</span> </span><span class="WHIT">            </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 368</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oSerialized.data</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 369</span> </span><span class="WHIT">                </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 370</span> </span><span class="WHIT">                    </span><span class="NAME">oDom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createTextNode</span><span class="PUNC">(</span><span class="NAME">oSerialized.data</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 371</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 372</span> </span><span class="WHIT">                </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 373</span> </span><span class="WHIT">                </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 374</span> </span><span class="WHIT">                    </span><span class="NAME">oDom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createTextNode</span><span class="PUNC">(</span><span class="NAME">oSerialized.innerText</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 375</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 376</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 377</span> 
+<span class='linenumber'> 378</span> </span><span class="WHIT">            </span><span class="NAME">oParent.appendChild</span><span class="PUNC">(</span><span class="NAME">oDom</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 379</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 380</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oSerialized.childNodes</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 381</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 382</span> </span><span class="WHIT">        </span><span class="NAME">this.loopOnDeserialize</span><span class="PUNC">(</span><span class="NAME">oSerialized.childNodes</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oDom</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 383</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 384</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 385</span> </span><span class="COMM">/**
+<span class='linenumber'> 386</span>  * loopOnDeserialize is an utilities method used to loop over all the serialized elements
+<span class='linenumber'> 387</span>  * @member Cutter.prototype
+<span class='linenumber'> 388</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 389</span>  * @version 1.0
+<span class='linenumber'> 390</span>  * @param  {object} oSerializedElements The JSON object on which to run the loop
+<span class='linenumber'> 391</span>  * @private
+<span class='linenumber'> 392</span>  */</span><span class="WHIT">
+<span class='linenumber'> 393</span> </span><span class="NAME">Cutter.prototype.loopOnDeserialize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oSerializedElements</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oParent</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 394</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 395</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">sKey</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">oSerializedElements</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 396</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 397</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oSerializedElements.hasOwnProperty</span><span class="PUNC">(</span><span class="NAME">sKey</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 398</span> </span><span class="WHIT">        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 399</span> </span><span class="WHIT">            </span><span class="NAME">this.deserializeObject</span><span class="PUNC">(</span><span class="NAME">oSerializedElements</span><span class="PUNC">[</span><span class="NAME">sKey</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oParent</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 400</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 401</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 402</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 403</span> </span><span class="COMM">/**
+<span class='linenumber'> 404</span>  * deserializeSerializedObject is an utilities method used to deserialize all the Dom elements that where serialized and is where the cut is applied.
+<span class='linenumber'> 405</span>  * This method is the core of the class.
+<span class='linenumber'> 406</span>  * @member Cutter.prototype
+<span class='linenumber'> 407</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 408</span>  * @version 1.0
+<span class='linenumber'> 409</span>  * @param  {object} oSerialized The JSON object to deserialize
+<span class='linenumber'> 410</span>  * @param  {object} oParent The DOM object where to put the new finished code.
+<span class='linenumber'> 411</span>  * @private
+<span class='linenumber'> 412</span>  */</span><span class="WHIT">
+<span class='linenumber'> 413</span> </span><span class="NAME">Cutter.prototype.deserializeSerializedObject</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oSerialized</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oParent</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 414</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 415</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">bLoopOnChilds</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 416</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oSerialized</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 417</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 418</span> </span><span class="WHIT">        </span><span class="NAME">oSerialized</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._getFirstElementOfObject</span><span class="PUNC">(</span><span class="NAME">this.oSerialized</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 419</span> </span><span class="WHIT">        </span><span class="NAME">this.oDocumentFragment</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createDocumentFragment</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 420</span> </span><span class="WHIT">        </span><span class="NAME">bLoopOnChilds</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 421</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 422</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oParent</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 423</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 424</span> </span><span class="WHIT">     	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oLayer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="STRN">"div"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 425</span> </span><span class="WHIT">		</span><span class="NAME">this.oDocumentFragment.appendChild</span><span class="PUNC">(</span><span class="NAME">oLayer</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 426</span> </span><span class="WHIT">	    </span><span class="NAME">oParent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oLayer</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 427</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 428</span> 
+<span class='linenumber'> 429</span> </span><span class="WHIT">    </span><span class="NAME">this.deserializeObject</span><span class="PUNC">(</span><span class="NAME">oSerialized</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oParent</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 430</span> 
+<span class='linenumber'> 431</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oSerialized.childNodes</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 432</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 433</span> </span><span class="WHIT">        </span><span class="NAME">this.loopOnDeserialize</span><span class="PUNC">(</span><span class="NAME">oSerialized.childNodes</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oParent</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 434</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 435</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 436</span> </span><span class="COMM">/**
+<span class='linenumber'> 437</span>  * serializeDomObject is an utilities method used to serialize all the Dom elements in a JSON object
+<span class='linenumber'> 438</span>  * This method is the brain of the class.
+<span class='linenumber'> 439</span>  * @member Cutter.prototype
+<span class='linenumber'> 440</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 441</span>  * @version 1.0
+<span class='linenumber'> 442</span>  * @param  {object} oDom The Dom element to serialize
+<span class='linenumber'> 443</span>  * @param  {object} oSerializeObject The JSON object where to serialize the Dom element
+<span class='linenumber'> 444</span>  * @private
+<span class='linenumber'> 445</span>  */</span><span class="WHIT">
+<span class='linenumber'> 446</span> </span><span class="NAME">Cutter.prototype.serializeDomObject</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oDom</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oSerializeObject</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 447</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 448</span> </span><span class="WHIT">   	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">sId</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Math.random</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NUMB">15412457562</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 449</span> </span><span class="WHIT">   	</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">this.bTest</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 450</span> </span><span class="WHIT">   	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 451</span> </span><span class="WHIT">		</span><span class="NAME">sId</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"__"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.nIdTest</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"__"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 452</span> </span><span class="WHIT">   	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 453</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.nWordsCounter</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">this.nWords</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 454</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 455</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oSerialized</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 456</span> </span><span class="WHIT">        </span><span class="NAME">oSerialized.nodeType</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oDom.nodeType</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 457</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oDom.tagName</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 458</span> </span><span class="WHIT">        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 459</span> </span><span class="WHIT">            </span><span class="NAME">oSerialized.tagName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oDom.tagName.toLowerCase</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 460</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 461</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">aAttributes</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oDom.attributes</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 462</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">aAttributes</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 463</span> </span><span class="WHIT">        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 464</span> </span><span class="WHIT">            </span><span class="NAME">oSerialized.attributes</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 465</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oAttribute</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 466</span> 
+<span class='linenumber'> 467</span> </span><span class="WHIT">            </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">nAttribute</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">nLenAttributes</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">aAttributes.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">nAttribute</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">nLenAttributes</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">nAttribute</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 468</span> </span><span class="WHIT">            </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 469</span> </span><span class="WHIT">				</span><span class="NAME">oAttribute</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">aAttributes</span><span class="PUNC">[</span><span class="NAME">nAttribute</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 470</span> </span><span class="WHIT">				</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">oAttribute.nodeValue</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 471</span> </span><span class="WHIT">				</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 472</span> </span><span class="WHIT">					</span><span class="NAME">oSerialized.attributes</span><span class="PUNC">[</span><span class="NAME">oAttribute.name</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oAttribute.value</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 473</span> </span><span class="WHIT">				</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 474</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 475</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 476</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oSerialized.nodeType</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 477</span> </span><span class="WHIT">        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 478</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">nLastWordsCounter</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.nWordsCounter</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 479</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oDom.textContent</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 480</span> </span><span class="WHIT">            </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 481</span> </span><span class="WHIT">                </span><span class="NAME">this.nWordsCounter</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._countWords</span><span class="PUNC">(</span><span class="NAME">this._trim</span><span class="PUNC">(</span><span class="NAME">oDom.textContent</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 482</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 483</span> </span><span class="WHIT">            </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 484</span> </span><span class="WHIT">            </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 485</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oDom.data</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 486</span> </span><span class="WHIT">                </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 487</span> </span><span class="WHIT">                    </span><span class="NAME">this.nWordsCounter</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._countWords</span><span class="PUNC">(</span><span class="NAME">this._trim</span><span class="PUNC">(</span><span class="NAME">oDom.data</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 488</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 489</span> </span><span class="WHIT">                </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 490</span> </span><span class="WHIT">                </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 491</span> </span><span class="WHIT">                    </span><span class="NAME">this.nWordsCounter</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._countWords</span><span class="PUNC">(</span><span class="NAME">this._trim</span><span class="PUNC">(</span><span class="NAME">oDom.innerText</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 492</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 493</span> 
+<span class='linenumber'> 494</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 495</span> 
+<span class='linenumber'> 496</span> 
+<span class='linenumber'> 497</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.nWordsCounter</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">this.nWords</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 498</span> </span><span class="WHIT">            </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 499</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oDom.textContent</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 500</span> </span><span class="WHIT">                </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 501</span> </span><span class="WHIT">                    </span><span class="NAME">oSerialized.textContent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oDom.textContent</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 502</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 503</span> </span><span class="WHIT">                </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 504</span> </span><span class="WHIT">                </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 505</span> </span><span class="WHIT">                    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oDom.data</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 506</span> </span><span class="WHIT">                    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 507</span> </span><span class="WHIT">                        </span><span class="NAME">oSerialized.innerText</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oDom.data</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 508</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 509</span> </span><span class="WHIT">                    </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 510</span> </span><span class="WHIT">                    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 511</span> </span><span class="WHIT">                        </span><span class="NAME">oSerialized.innerText</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oDom.innerText</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 512</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 513</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 514</span> 
+<span class='linenumber'> 515</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 516</span> </span><span class="WHIT">            </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 517</span> </span><span class="WHIT">			</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 518</span> </span><span class="WHIT">				</span><span class="NAME">this.bNeedViewMore</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 519</span> </span><span class="WHIT">				</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">nLastWordsCounter</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">this.nWords</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">this.nWordsCounter</span><span class="WHIT"> </span><span class="PUNC">></span><span class="WHIT"> </span><span class="NAME">this.nWords</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 520</span> </span><span class="WHIT">                </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 521</span> </span><span class="WHIT">                    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oDom.textContent</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 522</span> </span><span class="WHIT">                    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 523</span> </span><span class="WHIT">                        </span><span class="NAME">oSerialized.textContent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._getOnlyNumberOfWords</span><span class="PUNC">(</span><span class="NAME">oDom.textContent</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.nWords</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">nLastWordsCounter</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 524</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 525</span> </span><span class="WHIT">                    </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 526</span> </span><span class="WHIT">                    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 527</span> </span><span class="WHIT">                        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oDom.data</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 528</span> </span><span class="WHIT">                        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 529</span> </span><span class="WHIT">                            </span><span class="NAME">oSerialized.innerText</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._getOnlyNumberOfWords</span><span class="PUNC">(</span><span class="NAME">oDom.data</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.nWords</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">nLastWordsCounter</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 530</span> </span><span class="WHIT">                        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 531</span> </span><span class="WHIT">                        </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 532</span> </span><span class="WHIT">                        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 533</span> </span><span class="WHIT">                            </span><span class="NAME">oSerialized.innerText</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._getOnlyNumberOfWords</span><span class="PUNC">(</span><span class="NAME">oDom.innerText</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.nWords</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">nLastWordsCounter</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 534</span> </span><span class="WHIT">                        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 535</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 536</span> 
+<span class='linenumber'> 537</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 538</span> </span><span class="WHIT">                </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 539</span> </span><span class="WHIT">                </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 540</span> </span><span class="WHIT">					</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">document.body.textContent</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 541</span> </span><span class="WHIT">                    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 542</span> </span><span class="WHIT">                        </span><span class="NAME">oSerialized.textContent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 543</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 544</span> </span><span class="WHIT">                    </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 545</span> </span><span class="WHIT">                    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 546</span> </span><span class="WHIT">                        </span><span class="NAME">oSerialized.innerText</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 547</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 548</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 549</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 550</span> 
+<span class='linenumber'> 551</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 552</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oDom.hasChildNodes</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 553</span> </span><span class="WHIT">        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 554</span> </span><span class="WHIT">            </span><span class="NAME">oSerialized.childNodes</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 555</span> </span><span class="WHIT">            </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">nChild</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">nLenChilds</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oDom.childNodes.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">nChild</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">nLenChilds</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">nChild</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 556</span> </span><span class="WHIT">            </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 557</span> </span><span class="WHIT">                </span><span class="NAME">this.serializeDomObject</span><span class="PUNC">(</span><span class="NAME">oDom.childNodes</span><span class="PUNC">[</span><span class="NAME">nChild</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oSerialized.childNodes</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 558</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 559</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 560</span> 
+<span class='linenumber'> 561</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oSerializeObject</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 562</span> </span><span class="WHIT">        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 563</span> </span><span class="WHIT">            </span><span class="NAME">this.oSerialized</span><span class="PUNC">[</span><span class="NAME">sId</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oSerialized</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 564</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 565</span> </span><span class="WHIT">        </span><span class="KEYW">else</span><span class="WHIT">
+<span class='linenumber'> 566</span> </span><span class="WHIT">        </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 567</span> </span><span class="WHIT">            </span><span class="NAME">oSerializeObject</span><span class="PUNC">[</span><span class="NAME">sId</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oSerialized</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 568</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 569</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 570</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 571</span> </span><span class="COMM">/**
+<span class='linenumber'> 572</span>  * addEvent is the wrapper method to add a new event to the element
+<span class='linenumber'> 573</span>  * @member Cutter.prototype
+<span class='linenumber'> 574</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 575</span>  * @version 1.0
+<span class='linenumber'> 576</span>  * @private
+<span class='linenumber'> 577</span>  * @param {DOM} oElement
+<span class='linenumber'> 578</span>  * @param {String} sType
+<span class='linenumber'> 579</span>  * @param {Function} fpCallback
+<span class='linenumber'> 580</span>  */</span><span class="WHIT">
+<span class='linenumber'> 581</span> </span><span class="NAME">Cutter.prototype.addEvent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oElement</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">sType</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fpCallback</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 582</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 583</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">oElement.addEventListener</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 584</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 585</span> </span><span class="WHIT">		</span><span class="NAME">oElement.addEventListener</span><span class="PUNC">(</span><span class="NAME">sType</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fpCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 586</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 587</span> </span><span class="WHIT">	</span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">oElement.attachEvent</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 588</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 589</span> </span><span class="WHIT">		</span><span class="NAME">oElement.attachEvent</span><span class="PUNC">(</span><span class="STRN">"on"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">sType</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fpCallback</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 590</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 591</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 592</span> </span><span class="COMM">/**
+<span class='linenumber'> 593</span>  * setBehaviour is the method that applies the behaviour to the "see more" link to get the full content again when makink click on it
+<span class='linenumber'> 594</span>  * @member Cutter.prototype
+<span class='linenumber'> 595</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 596</span>  * @version 1.0
+<span class='linenumber'> 597</span>  * @private
+<span class='linenumber'> 598</span>  */</span><span class="WHIT">
+<span class='linenumber'> 599</span> </span><span class="NAME">Cutter.prototype.setBehaviour</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 600</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 601</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 602</span> </span><span class="WHIT">    </span><span class="NAME">this.addEvent</span><span class="PUNC">(</span><span class="NAME">this.oViewMore</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"click"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 603</span> </span><span class="WHIT">    </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 604</span> </span><span class="WHIT">    	</span><span class="NAME">self.showAll</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 605</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 606</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 607</span> </span><span class="COMM">/**
+<span class='linenumber'> 608</span>  * showAll is the method that put the initial content to the target Dom element
+<span class='linenumber'> 609</span>  * @member Cutter.prototype
+<span class='linenumber'> 610</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 611</span>  * @version 1.0
+<span class='linenumber'> 612</span>  * @private
+<span class='linenumber'> 613</span>  */</span><span class="WHIT">
+<span class='linenumber'> 614</span> </span><span class="NAME">Cutter.prototype.showAll</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 615</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 616</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oTarget</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.oTarget</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 617</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oParent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oTarget.parentNode</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 618</span> </span><span class="WHIT">    </span><span class="NAME">oParent.insertBefore</span><span class="PUNC">(</span><span class="NAME">this.oBackupApplyTo</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oTarget</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 619</span> </span><span class="WHIT">    </span><span class="NAME">oParent.removeChild</span><span class="PUNC">(</span><span class="NAME">oTarget</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 620</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 621</span> </span><span class="COMM">/**
+<span class='linenumber'> 622</span>  * init is the method that makes all the work.
+<span class='linenumber'> 623</span>  * Serialize the Dom.
+<span class='linenumber'> 624</span>  * Deserialize the JSON object to Dom elements only with the words that were wanted
+<span class='linenumber'> 625</span>  * Remove the firstChild in oDocumentFragment because this node is the oApplyTo content.
+<span class='linenumber'> 626</span>  * Clean the content on oTarget.
+<span class='linenumber'> 627</span>  * Create the "see more" link
+<span class='linenumber'> 628</span>  * Append the "see more" link to the oDocumentFragment.
+<span class='linenumber'> 629</span>  * Insert the oDocumentFragment content in the oTarget element
+<span class='linenumber'> 630</span>  * At least the behaviour is applied to the link to make possible to get the original content before the cut.
+<span class='linenumber'> 631</span>  * @member Cutter.prototype
+<span class='linenumber'> 632</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 633</span>  * @version 1.0
+<span class='linenumber'> 634</span>  */</span><span class="WHIT">
+<span class='linenumber'> 635</span> </span><span class="NAME">Cutter.prototype.init</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 636</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 637</span> </span><span class="WHIT">    </span><span class="NAME">this.serializeDomObject</span><span class="PUNC">(</span><span class="NAME">this.oApplyTo</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 638</span> </span><span class="WHIT">    </span><span class="NAME">this.deserializeSerializedObject</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 639</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oElement</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.oDocumentFragment.childNodes</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 640</span> </span><span class="WHIT">    </span><span class="NAME">oElement.removeChild</span><span class="PUNC">(</span><span class="NAME">this.oDocumentFragment.childNodes</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">childNodes</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 641</span> 
+<span class='linenumber'> 642</span> </span><span class="WHIT">    </span><span class="NAME">this.oTarget.innerHTML</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 643</span> </span><span class="WHIT">    </span><span class="NAME">this.createViewMore</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 644</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oFinalContent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.oDocumentFragment.childNodes</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">childNodes</span><span class="PUNC">[</span><span class="NAME">this.oDocumentFragment.childNodes</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">childNodes.length</span><span class="PUNC">-</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 645</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">oFinalContent.nodeType</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 646</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 647</span> </span><span class="WHIT">		</span><span class="NAME">oFinalContent.appendChild</span><span class="PUNC">(</span><span class="NAME">document.createTextNode</span><span class="PUNC">(</span><span class="STRN">"..."</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 648</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 649</span> 
+<span class='linenumber'> 650</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">this.bNeedViewMore</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">this.bNotViewMore</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 651</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 652</span> </span><span class="WHIT">		</span><span class="NAME">oElement.appendChild</span><span class="PUNC">(</span><span class="NAME">this.oViewMore</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 653</span> </span><span class="WHIT">    	</span><span class="NAME">this.setBehaviour</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 654</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 655</span> </span><span class="WHIT">	</span><span class="NAME">this.oTarget.appendChild</span><span class="PUNC">(</span><span class="NAME">this.oDocumentFragment</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 656</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 657</span> </span><span class="COMM">/**
+<span class='linenumber'> 658</span>  * run is the static method to make API simple.
+<span class='linenumber'> 659</span>  * @member Cutter
+<span class='linenumber'> 660</span>  * @author Tomas Corral Casas
+<span class='linenumber'> 661</span>  * @version 1.0
+<span class='linenumber'> 662</span>  * @param {DOM} oApplyTo
+<span class='linenumber'> 663</span>  * @param {DOM} oTarget
+<span class='linenumber'> 664</span>  * @param {Number} nWords
+<span class='linenumber'> 665</span>  * @param {Object} oTexts
+<span class='linenumber'> 666</span>  * @param {Object} oClasses
+<span class='linenumber'> 667</span>  */</span><span class="WHIT">
+<span class='linenumber'> 668</span> </span><span class="NAME">Cutter.run</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">oApplyTo</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oTarget</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">nWords</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oTexts</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oClasses</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 669</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 670</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oCutter</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Cutter</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 671</span> </span><span class="WHIT">		</span><span class="NAME">oCutter</span><span class="WHIT">
+<span class='linenumber'> 672</span> </span><span class="WHIT">			</span><span class="PUNC">.</span><span class="NAME">applyTo</span><span class="PUNC">(</span><span class="NAME">oApplyTo</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 673</span> </span><span class="WHIT">			</span><span class="PUNC">.</span><span class="NAME">setTarget</span><span class="PUNC">(</span><span class="NAME">oTarget</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 674</span> </span><span class="WHIT">			</span><span class="PUNC">.</span><span class="NAME">setWords</span><span class="PUNC">(</span><span class="NAME">nWords</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 675</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oTexts</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 676</span> </span><span class="WHIT">		</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 677</span> </span><span class="WHIT">			</span><span class="NAME">oCutter.setTexts</span><span class="PUNC">(</span><span class="NAME">oTexts</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 678</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 679</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">oClasses</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='linenumber'> 680</span> </span><span class="WHIT">		</span><span class="PUNC">{</span><span class="WHIT">
+<span class='linenumber'> 681</span> </span><span class="WHIT">			</span><span class="NAME">oCutter.setClasses</span><span class="PUNC">(</span><span class="NAME">oClasses</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 682</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 683</span> </span><span class="WHIT">		</span><span class="NAME">oCutter.init</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='linenumber'> 684</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='linenumber'> 685</span> </span></pre></body></html>
