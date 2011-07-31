@@ -46,13 +46,16 @@ Insert in your code:
 
 ####Optional
 
->  **oTexts: The texts config object with the text that will be showed if the link, to open the full content,is needed
+>  **oTexts**: The texts config object with the text that will be showed if the link, to open the full content,is needed
+
 >    oTexts by default: { more: "View more"}.
 
 >  **oClasses**: The style config object with the class to style the link if needed.
+
 >    oClasses by default: { more: "more"}.
 
 *Tip: oTarget Could be the same oApplyTo element if we want to replace the full content with the cut content*
+
 *Tip: If you only need to change the style you can*
 
 ## Documentation
