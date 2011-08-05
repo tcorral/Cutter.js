@@ -320,3 +320,7 @@ article a
 {
 	text-shadow: none;
 }
+#downloadList a
+{
+	color:#fff;
+}
