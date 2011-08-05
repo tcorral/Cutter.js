@@ -19,7 +19,9 @@ Cutter cuts the content to the number of requested words and if needed puts a li
         * Safari >= 4
         * Google Chrome >= 4
         * Opera >= 9.5
-*   Only 1.4kb when Gzipped.
+*   Only 1.5kb when [Gzipped](http://tcorral.github.com/Cutter.js/versions/cutter.js.gz).
+
+(Links will only work if you clone the repo.)
 
 [API documentation](https://github.com/tcorral/Cutter.js/examples_and_documents/jsdoc/index.html)
 
@@ -59,6 +61,8 @@ Insert in your code:
 *Tip: If you only need to change the style you must put "undefined" where oTexts must be placed.*
 
 ## Documentation
+
+(Links will only work if you clone the repo.)
 
 [API documentation](https://github.com/tcorral/Cutter.js/examples_and_documents/jsdoc/index.html)
 
