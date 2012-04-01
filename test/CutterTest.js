@@ -6,7 +6,7 @@ function cutterTearDown()
 {
 	this.oCutter = null;
 }
-TestCase("CutterConstuctorTest", sinon.testCase({
+TestCase("CutterConstructorTest", sinon.testCase({
 	setUp: cutterSetUp,
 	"test should return null for the oApply property by default": function()
 	{
@@ -22,11 +22,11 @@ TestCase("CutterConstuctorTest", sinon.testCase({
 	},
 	"test should return CutterClasses instance for oClasses by default": function()
 	{
-		assertObject(this.oCutter.oClasses);
+		assertEquals("more", this.oCutter.oClasses);
 	},
 	"test should return CutterTexts instance for oTexts by default": function()
 	{
-		assertObject(this.oCutter.oTexts);
+		assertEquals("View more", this.oCutter.oTexts);
 	},
 	"test should return 0 for nWords by default": function()
 	{
@@ -95,7 +95,7 @@ TestCase("CutterApplyToTest", sinon.testCase({
 
 		assertSame(oObject, this.oCutter.oBackupApplyTo);
 	},
-	"test should return the Cutter instance if we don't provide nothing": function()
+	"test should return the Cutter instance if we don't provide anything": function()
 	{
 		var oResult = null;
 
@@ -284,7 +284,7 @@ TestCase("CutterSetTextsTest", sinon.testCase({
 		var oObject = {};
 		this.oCutter.oTexts = oObject;
 
-		this.oCutter.setTexts();
+		this.oCutter.setText();
 
 		assertSame(oObject, this.oCutter.oTexts);
 	},
@@ -293,7 +293,7 @@ TestCase("CutterSetTextsTest", sinon.testCase({
 		var oObject = {};
 		this.oCutter.oTexts = oObject;
 
-		this.oCutter.setTexts(null);
+		this.oCutter.setText(null);
 
 		assertSame(oObject, this.oCutter.oTexts);
 	},
@@ -301,7 +301,7 @@ TestCase("CutterSetTextsTest", sinon.testCase({
 	{
 		var oResult = null;
 
-		oResult = this.oCutter.setTexts();
+		oResult = this.oCutter.setText();
 
 		assertInstanceOf(Cutter, oResult);
 	},
@@ -309,7 +309,7 @@ TestCase("CutterSetTextsTest", sinon.testCase({
 	{
 		var oResult = null;
 
-		oResult = this.oCutter.setTexts(null);
+		oResult = this.oCutter.setText(null);
 
 		assertInstanceOf(Cutter, oResult);
 	},
@@ -322,7 +322,7 @@ TestCase("CutterSetTextsTest", sinon.testCase({
 		};
 		this.oCutter.oTexts = oObject;
 
-		this.oCutter.setTexts(oObject2);
+		this.oCutter.setText(oObject2);
 
 		assertSame(oObject2, this.oCutter.oTexts);
 	},
@@ -332,7 +332,7 @@ TestCase("CutterSetTextsTest", sinon.testCase({
 		var oObject2 = {};
 		var oResult = null;
 
-		oResult = this.oCutter.setTexts(oObject2);
+		oResult = this.oCutter.setText(oObject2);
 
 		assertInstanceOf(Cutter, oResult);
 	},
@@ -536,14 +536,14 @@ TestCase("CutterCreateViewMoreTest", sinon.testCase({
 	{
 		cutterSetUp.call(this);
 	},
-	"test should create a link object and it must be setted to oViewMore": function()
+	"test should create a link object and it must be set to oViewMore": function()
 	{
 		this.oCutter.createViewMore();
 
 		assertTagName("a", this.oCutter.oViewMore);
-		assertClassName(this.oCutter.oClasses.more, this.oCutter.oViewMore);
-		assertEquals(this.oCutter.oTexts.more, this.oCutter.oViewMore.innerHTML);
-		assertEquals(this.oCutter.oTexts.more, this.oCutter.oViewMore.title);
+		assertClassName(this.oCutter.oClasses, this.oCutter.oViewMore);
+		assertEquals(this.oCutter.oTexts, this.oCutter.oViewMore.innerHTML);
+		assertEquals(this.oCutter.oTexts, this.oCutter.oViewMore.title);
 	},
 	tearDown: function()
 	{

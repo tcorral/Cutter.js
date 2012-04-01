@@ -1,5 +1,5 @@
 # Cutter.js
-Cutter.js is a class to truncate HTML code to limit its length, by words number, without losing the markup.
+Cutter.js is a library used for truncating HTML code to limit its length, by word number, without losing the markup.
 
 ## Description
 
@@ -36,37 +36,32 @@ Insert in your code:
 
 ### Simple execution:
 
-	Cutter.run(oApplyTo, oTarget, nWords, [oTexts, oClasses]);
+	Cutter.run(oApplyTo, oTarget, nWords, [configuration]);
 
 ####Mandatory
 
-  >  **oAplyTo**: The element where the cutter will cut the content
+  >  **oAplyTo**: The element that will have its text truncated
 
-  >  **oTarget**: The element where the content will be attached after cut it.
+  >  **oTarget**: The element where the truncated content will be placed.
 
-  >  **nWords**: Number of words to cut the content.
+  >  **nWords**: Maximum word count. Any additional word will be truncated.
 
 ####Optional
 
-  >  **oTexts**: The texts config object with the text that will be showed if the link, to open the full content,is needed
+  >  **configuration**: This object contains both the text that will be displayed in the "view more" link and its style.
 
-  >>    oTexts by default: { more: "View more"}.
+  >>    configuration.viewMoreText: The text that will be displayed in the "view more" link. The default is "View more"
 
-  >  **oClasses**: The style config object with the class to style the link if needed.
-
-  >>    oClasses by default: { more: "more"}.
+  >>    configuration.class: The class that will be applied to the "View more" link. The default is "more"
 
 *Tip: oTarget Could be the same oApplyTo element if we want to replace the full content with the cut content*
 
-*Tip: If you only need to change the style you must put "undefined" where oTexts must be placed.*
+## Example
 
-## Documentation
+cutElement = document.getElementById("test");
+Cutter.run(cutElement, cutElement, 30, {viewMoreText:"Expand", class:"expandLink"});
 
-(Links will only work if you clone the repo.)
-
-[API documentation](https://github.com/tcorral/Cutter.js/examples_and_documents/jsdoc/index.html)
-
-[Examples](https://github.com/tcorral/Cutter.js/examples_and_documents/index.html) to see for yourself!
+*On the example above, the element with id "test" will display a maximum of 30 words and a link entitled "Expand". The "expandLink" class will be applied to this link. The remaining words that were previously truncated will show up in the element when the link is clicked.
 
 ## License
 
