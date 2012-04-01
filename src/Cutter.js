@@ -5,28 +5,6 @@
 		Cutter = null;
 
 	/**
-	 * CutterClasses is the config singleton for classes used in Cutter
-	 * @class CutterClasses
-	 * @constructor
-	 * @author Tomas Corral Casas
-	 * @version 1.0
-	 * @type Object
-	 */
-	CutterClasses = function () {
-		this.more = "more";
-	};
-	/**
-	 * CutterTexts is the config singleton for texts used in Cutter
-	 * @class CutterTexts
-	 * @constructor
-	 * @author Tomas Corral Casas
-	 * @version 1.0
-	 * @type Object
-	 */
-	CutterTexts = function () {
-	    this.more =  "View more";
-	};
-	/**
 	 * Cutter is a class that allows HTML code to cut a number of words contained in the nodes, keeping intact the HTML markup.
 	 * @author Tomas Corral Casas
 	 * @version 1.0
@@ -62,14 +40,14 @@
 	     * @author Tomas Corral Casas
 	     * @type Object
 	     */
-	    this.oClasses = new CutterClasses();
+	    this.oClasses = "more";
 	    /**
 	     * oTexts is the config singleton for texts used in Cutter
 	     * @member Cutter.prototype
 	     * @author Tomas Corral Casas
 	     * @type Object
 	     */
-	    this.oTexts = new CutterTexts();
+	    this.oTexts = "View more";
 	    /**
 	     * nWords is the number of words to Cut
 	     * @member Cutter.prototype
@@ -187,14 +165,14 @@
 	    return this;
 	};
 	/**
-	 * setTexts is the method that sets the config singleton of Texts used in Cutter
+	 * setText is the method that sets the text displayed in the "view more" link.
 	 * @member Cutter.prototype
 	 * @author Tomas Corral Casas
 	 * @param  {object} oTexts This is the singleton config
 	 * @return the instance of the Cutter
 	 * @type Object
 	 */
-	Cutter.prototype.setTexts = function (oTexts) {
+	Cutter.prototype.setText = function (oTexts) {
 	    if (!oTexts) {
 			return this;
 	    }
@@ -261,10 +239,9 @@
 	 */
 	Cutter.prototype.createViewMore = function () {
 		var oLink = doc.createElement("a");
-		oLink.className = this.oClasses.more;
-		oLink.title = this.oTexts.more;
-		oLink.href = "#";
-		oLink.innerHTML = this.oTexts.more;
+		oLink.className = this.oClasses;
+		oLink.title = this.oTexts;
+		oLink.innerHTML = this.oTexts;
 		this.oViewMore = oLink;
 	};
 	/**
@@ -531,15 +508,19 @@
 		}
 		this.oTarget.appendChild(this.oDocumentFragment);
 	};
-	Cutter.run = function (oApplyTo, oTarget, nWords, oTexts, oClasses) {
+	Cutter.run = function (oApplyTo, oTarget, nWords, configuration) {
 		var oCutter = new Cutter();
 		oCutter.applyTo(oApplyTo).setTarget(oTarget).setWords(nWords);
-		if (typeof oTexts !== "undefined") {
-			oCutter.setTexts(oTexts);
+
+		if (typeof configuration !== "undefined") {
+			if (typeof configuration.viewMoreText !== "undefined") {
+				oCutter.setText(configuration.viewMoreText);
+			}
+			if (typeof configuration.class !== "undefined") {
+				oCutter.setClasses(configuration.class);
+			}
 		}
-		if (typeof oClasses !== "undefined") {
-			oCutter.setClasses(oClasses);
-		}
+
 		oCutter.init();
 	};
 	win.Cutter = Cutter;
