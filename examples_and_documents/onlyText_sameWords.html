@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Cutter - Only Text -</title>
+		<script type="text/javascript" src="js/Cutter.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function ()
+			{
+				$("#runCutter").click(function ()
+				{
+					var self = this;
+					var oElement = document.getElementById("test");
+					Cutter.run(oElement, oElement, 31);
+					$(this).hide();
+					$(".more").click(function()
+					{
+						$(self).show();
+						return false;
+					})
+					return false;
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>Cutter.js - Only Text -</h1>
+		<ul>
+			<li>
+				Number of words: 100
+			</li>
+		</ul>
+		<div id="test">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra mattis erat, in rhoncus augue laoreet eu. Suspendisse potenti. Duis risus neque, dictum ut hendrerit et, lacinia sit amet nunc.
+		</div>
+		<p>
+			<a href='#' id='runCutter'>Run Cutter</a>
+		</p>
+	</body>
+</html>

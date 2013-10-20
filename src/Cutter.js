@@ -369,7 +369,7 @@
 		if (this.bTest) {
 			sId = "__" + (this.nIdTest += 1) + "__";
 		}
-	    if (this.nWordsCounter < this.nWords) {
+	    if (this.nWordsCounter <= this.nWords) {
 	        oSerialized = {};
 	        oSerialized.nodeType = oDom.nodeType;
 	        if (typeof oDom.tagName !== "undefined") {
@@ -399,7 +399,7 @@
 		            }
 	            }
 
-	            if (this.nWordsCounter < this.nWords) {
+	            if (this.nWordsCounter <= this.nWords) {
 	                if (typeof oDom.textContent !== "undefined") {
 	                    oSerialized.textContent = oDom.textContent;
 	                } else {
@@ -510,7 +510,7 @@
 		this.oTarget.appendChild(this.oDocumentFragment);
 	};
 	Cutter.run = function (oApplyTo, oTarget, nWords, configuration) {
-		var oCutter = new Cutter();
+    var oCutter = new Cutter();
 		oCutter.applyTo(oApplyTo).setTarget(oTarget).setWords(nWords);
 
 		if (typeof configuration !== "undefined") {
