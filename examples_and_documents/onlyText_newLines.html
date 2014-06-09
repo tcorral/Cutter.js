@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>Cutter - Only Text -</title>
+		<style type="text/css">
+
+			div#test {
+				white-space: pre;
+			}
+
+		</style>
+		<script type="text/javascript" src="js/Cutter.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function ()
+			{
+				$("#runCutter").click(function ()
+				{
+					var self = this;
+					var oElement = document.getElementById("test");
+					Cutter.run(oElement, oElement, 31);
+
+					$(this).hide();
+					$(".more").click(function()
+					{
+						$(self).show();
+						return false;
+					})
+
+					return false;
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>Cutter.js - Only Text - New Lines -</h1>
+		<ul>
+			<li>
+				Number of words: 100
+			</li>
+		</ul>
+		<div id="test">
+			First Line - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra mattis erat, in rhoncus augue laoreet eu.
+
+
+			Second Line - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra mattis erat, in rhoncus augue laoreet eu.
+
+
+			Third Line - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra mattis erat, in rhoncus augue laoreet eu.
+		</div>
+		<p>
+			<a href='#' id='runCutter'>Run Cutter</a>
+		</p>
+	</body>
+</html>
