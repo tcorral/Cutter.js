@@ -460,7 +460,12 @@
     Cutter.prototype.setBehaviour = function () {
         var self = this;
         this.addEvent(this.oViewMore, "click", function (e) {
+            if (e.preventDefault) {
                 e.preventDefault();
+            } else {
+                e.returnValue = false;
+            }
+            
             self.showAll();
             return false;
         });
